@@ -5,7 +5,7 @@ const Option = props => (
     <div>
         <components.Option {...props} >
             <input type="checkbox" checked={props.isSelected} onChange={() => null} />{" "}
-            <label>{props.label}</label>
+            <label>{props.label} </label>
         </components.Option>
     </div>
 );
@@ -18,7 +18,7 @@ const MultiValue = props => (
 
 class MySelect extends Component {
     render() {
-        const { options, onChangeCallback} = this.props;
+        const { options} = this.props;
         return (
             <Select
                 closeMenuOnSelect={false}
@@ -27,7 +27,6 @@ class MySelect extends Component {
                 options={options}
                 hideSelectedOptions={false}
                 backspaceRemovesValue={false}
-                onChange={e => onChangeCallback(e)}
             />
         );
     }

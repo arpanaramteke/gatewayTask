@@ -1,45 +1,34 @@
 import React from 'react';
 import './App.css';
-import MySelect from "./MySelect";
-import data from "./doc/data";
+import MySelect from "./MySelectList/MySelect";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-const data1=[
-  { value: "ocean", label: "here" },
-  { value: "blue", label: "data is there" },
-  { value: "purple", label: "Purple" },
-  { value: "red", label: "Red" },
-  { value: "orange", label: "Orange" }
-];  
+const selectList = [
+  { value: "enginnering", label: "Enginnering" },
+  { value: "medical", label: "Medical" },
+  { value: "biotechnology", label: "Biotechnology" },
+  { value: "chemical", label: "Chemical" },
+];
 
 class App extends React.Component {
   constructor(props) {
-    super(props) //since we are extending class Table so we have to use super in order to override Component class constructor
-    this.state = { //state is by default an object
-      header: ["task", "taskName", "description"],
-      students: [
+    super(props)
+    this.state = {
+      header: ["task", "Name", "description"],
+      taskList: [
         { id: 1, name: 'Wasif' },
         { id: 2, name: 'Ali' },
-        { id: 3, name: 'Saad' },
-        { id: 4, name: 'Asad' },
-        { id: 5, name: 'Asad' },
-        { id: 6, name: 'Asad' },
-        { id: 7, name: 'Asad' },
-        { id: 8, name: 'Asad' },
-        { id: 9, name: 'Asad' },
-        { id: 10, name: 'Asad' }
+        { id: 3, name: 'Sachin' },
+        { id: 4, name: 'Kamal' },
+        { id: 5, name: 'Ashwini' },
+        { id: 6, name: 'Rahul' },
+        { id: 7, name: 'Sachetan' },
+        { id: 8, name: 'Danial' },
+        { id: 9, name: 'Harry' },
+        { id: 10, name: 'Ashu' }
       ],
-      students: [
-        { id: 1, name: 'Wasif' },
-        { id: 2, name: 'Ali' },
-        { id: 3, name: 'Saad' },
-        { id: 4, name: 'Asad' },
-        { id: 5, name: 'Asad' },
-        { id: 6, name: 'Asad' },
-        { id: 7, name: 'Asad' },
-        { id: 8, name: 'Asad' },
-        { id: 9, name: 'Asad' },
-        { id: 10, name: 'Asad' }
-      ]
+      startDate: new Date()
     }
   }
 
@@ -50,33 +39,52 @@ class App extends React.Component {
     })
   }
 
-
   renderTableData() {
-    return this.state.students.map((student, index) => {
-      const { id, name, } = student //destructuring
+    return this.state.taskList.map((student, index) => {
+      const { id, name, } = student
       return (
-        <tr key={id}>
+        <tr key={id} className="taskhover">
           <td>{id}</td>
           <td>{name}</td>
           <td className="selectOption"> <MySelect
             className="myapp"
-            options={data1}
-            onChangeCallback={response => console.log(response)}
+            options={selectList}
           /></td>
         </tr>
       )
     })
   }
 
+  handleChange = date => {
+    this.setState({
+      startDate: date
+    });
+  };
+
 
   render() {
     return (
       <div className="App">
-        <div>
-          <text>Select Date</text>
+        <div className="dateContainer">
+          <div className="dateSelector">
+            <text>Select Date</text>
+            <DatePicker
+              selected={this.state.startDate}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <button onClick={this.handleClick} className="cancelBtn">
+             Cancel
+      </button>
+            <button onClick={this.handleClick} className="saveBtn">
+             Save
+      </button>
+          </div>
         </div>
-        <div >
-          <table id='students'>
+
+        <div className="mainContainer">
+          <table id='taskContainer'>
             <tbody>
               <tr>{this.renderTableHeader()}</tr>
               {this.renderTableData()}

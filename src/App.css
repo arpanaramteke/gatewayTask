@@ -1,35 +1,61 @@
+.App{
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 20px;
+}
+
 #title {
   text-align: center;
   font-family: arial, sans-serif;
 }
 
-#students {
+#taskContainer {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   border: 3px solid #ddd;
   width: 100%;
 }
 
-#students td, #students th {
+#taskContainer td, #taskContainer th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#students tr:nth-child(even){background-color: #f2f2f2;}
+#taskContainer tr:nth-child(even){background-color: #f2f2f2;}
 
-#students tr:hover {background-color: #ddd;}
+#taskContainer .taskhover:hover {background-color: #ddd;}
 
-#students th {
+#taskContainer th {
   padding-top: 12px;
   padding-bottom: 12px;
   color: black;
 }
 
-
 .selectOption{
   width: 59%
 }
 
-.data{
-  text-align: left;
+.dateSelector{
+  display: flex;
+    flex-direction: column;
+}
+
+.mainContainer{
+  padding-top:20px;
+}
+
+.dateContainer{
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancelBtn{
+width:107px;
+height:40px;
+margin-right: 22px;
+}
+
+.saveBtn{
+  width:107px;
+  height:40px;
 }
